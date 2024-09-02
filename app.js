@@ -1,15 +1,20 @@
 const steps = document.querySelectorAll(".stp");
 const circleSteps = document.querySelectorAll(".step");
+
 const formInputs = document.querySelectorAll(".step-1 form input");
 const plans = document.querySelectorAll(".plan-card");
+
 const switcher = document.querySelector(".switch");
 const addons = document.querySelectorAll(".box");
+
 const total = document.querySelector(".total b");
 const planPrice = document.querySelector(".plan-price");
+
 let time;
 let currentStep = 1;
+
 let currentCircle = 0;
-const obj = {
+const obj ={
   plan: null,
   kind: null,
   price: null,
@@ -27,6 +32,7 @@ steps.forEach((step) => {
       currentCircle--;
     });
   }
+
   nextBtn.addEventListener("click", () => {
     document.querySelector(`.step-${currentStep}`).style.display = "none";
     if (currentStep < 5 && validateForm()) {
@@ -34,41 +40,55 @@ steps.forEach((step) => {
       currentCircle++;
       setTotal();
     }
+
     document.querySelector(`.step-${currentStep}`).style.display = "flex";
     circleSteps[currentCircle].classList.add("active");
     summary(obj);
+
   });
+
 });
+
+
+
 function summary(obj) {
   const planName = document.querySelector(".plan-name");
   const planPrice = document.querySelector(".plan-price");
   planPrice.innerHTML = `${obj.price.innerText}`;
-  planName.innerHTML = `${obj.plan.innerText} (${
-    obj.kind ? "yearly" : "monthly"
-  })`;
+  planName.innerHTML = `${obj.plan.innerText} (${obj.kind ? "yearly" : "monthly"})`;
 }
+
+
 function validateForm() {
   let valid = true;
   for (let i = 0; i < formInputs.length; i++) {
+
     if (!formInputs[i].value) {
       valid = false;
       formInputs[i].classList.add("err");
       findLabel(formInputs[i]).nextElementSibling.style.display = "flex";
-    } else {
+    } else {     
       valid = true;
       formInputs[i].classList.remove("err");
       findLabel(formInputs[i]).nextElementSibling.style.display = "none";
     }
+
   }
+
   return valid;
 }
+
+
 function findLabel(el) {
   const idVal = el.id;
   const labels = document.getElementsByTagName("label");
   for (let i = 0; i < labels.length; i++) {
     if (labels[i].htmlFor == idVal) return labels[i];
   }
+
 }
+
+
 
 plans.forEach((plan) => {
   plan.addEventListener("click", () => {
@@ -81,6 +101,8 @@ plans.forEach((plan) => {
   });
 });
 
+
+
 switcher.addEventListener("click", () => {
   const val = switcher.querySelector("input").checked;
   if (val) {
@@ -90,9 +112,12 @@ switcher.addEventListener("click", () => {
     document.querySelector(".monthly").classList.add("sw-active");
     document.querySelector(".yearly").classList.remove("sw-active");
   }
+
   switchPrice(val);
   obj.kind = val;
 });
+
+
 addons.forEach((addon) => {
   addon.addEventListener("click", (e) => {
     const addonSelect = addon.querySelector("input");
@@ -107,8 +132,14 @@ addons.forEach((addon) => {
       showAddon(addon, true);
       e.preventDefault();
     }
+
+
   });
+
+
 });
+
+
 
 function switchPrice(checked) {
   const yearlyPrice = [90, 120, 150];
@@ -125,7 +156,10 @@ function switchPrice(checked) {
     prices[2].innerHTML = `$${monthlyPrice[2]}/mo`;
     setTime(false)
   }
+
 }
+
+
 function showAddon(ad, val) {
   const temp = document.getElementsByTagName("template")[0];
   const clone = temp.content.cloneNode(true);
@@ -146,14 +180,15 @@ function showAddon(ad, val) {
       }
     });
   }
+
 }
+
+
 
 function setTotal() {
   const str = planPrice.innerHTML;
   const res = str.replace(/\D/g, "");
-  const addonPrices = document.querySelectorAll(
-    ".selected-addon .servic-price"
-  );
+  const addonPrices = document.querySelectorAll(".selected-addon .servic-price");
 
   let val = 0;
   for (let i = 0; i < addonPrices.length; i++) {
@@ -164,6 +199,7 @@ function setTotal() {
   }
   total.innerHTML = `$${val + Number(res)}/${time?"yr":"mo"}`;
 }
+
 function setTime(t) {
   return time = t;
 }
