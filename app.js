@@ -14,24 +14,25 @@ const obj = {
   kind: null,
   price: null,
 };
+
 steps.forEach((step) => {
-    const nextBtn = step.querySelector(".next-stp");
-    const prevBtn = step.querySelector(".prev-stp");
-    if (prevBtn) {
-      prevBtn.addEventListener("click", () => {
-        document.querySelector(`.step-${currentStep}`).style.display = "none";
-        currentStep--;
-        document.querySelector(`.step-${currentStep}`).style.display = "flex";
-        circleSteps[currentCircle].classList.remove("active");
-        currentCircle--;
-      });
-    }
-    nextBtn.addEventListener("click", () => {
+  const nextBtn = step.querySelector(".next-stp");
+  const prevBtn = step.querySelector(".prev-stp");
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
       document.querySelector(`.step-${currentStep}`).style.display = "none";
-      if (currentStep < 5 && validateForm()) {
-        currentStep++;
-        currentCircle++;
-        setTotal();
+      currentStep--;
+      document.querySelector(`.step-${currentStep}`).style.display = "flex";
+      circleSteps[currentCircle].classList.remove("active");
+      currentCircle--;
+    });
+  }
+  nextBtn.addEventListener("click", () => {
+    document.querySelector(`.step-${currentStep}`).style.display = "none";
+    if (currentStep < 5 && validateForm()) {
+      currentStep++;
+      currentCircle++;
+      setTotal();
     }
     document.querySelector(`.step-${currentStep}`).style.display = "flex";
     circleSteps[currentCircle].classList.add("active");
@@ -68,6 +69,7 @@ function findLabel(el) {
     if (labels[i].htmlFor == idVal) return labels[i];
   }
 }
+
 plans.forEach((plan) => {
   plan.addEventListener("click", () => {
     document.querySelector(".selected").classList.remove("selected");
@@ -78,12 +80,14 @@ plans.forEach((plan) => {
     obj.price = planPrice;
   });
 });
+
 switcher.addEventListener("click", () => {
   const val = switcher.querySelector("input").checked;
   if (val) {
     document.querySelector(".monthly").classList.remove("sw-active");
     document.querySelector(".yearly").classList.add("sw-active");
-  } else {document.querySelector(".monthly").classList.add("sw-active");
+  } else {
+    document.querySelector(".monthly").classList.add("sw-active");
     document.querySelector(".yearly").classList.remove("sw-active");
   }
   switchPrice(val);
@@ -98,12 +102,14 @@ addons.forEach((addon) => {
       addon.classList.remove("ad-selected");
       showAddon(ID, false);
     } else {
-      addonSelect.checked = true; addon.classList.add("ad-selected");
+      addonSelect.checked = true;
+      addon.classList.add("ad-selected");
       showAddon(addon, true);
       e.preventDefault();
     }
   });
 });
+
 function switchPrice(checked) {
   const yearlyPrice = [90, 120, 150];
   const monthlyPrice = [9, 12, 15];
@@ -141,20 +147,23 @@ function showAddon(ad, val) {
     });
   }
 }
+
 function setTotal() {
   const str = planPrice.innerHTML;
   const res = str.replace(/\D/g, "");
   const addonPrices = document.querySelectorAll(
     ".selected-addon .servic-price"
   );
+
   let val = 0;
   for (let i = 0; i < addonPrices.length; i++) {
     const str = addonPrices[i].innerHTML;
     const res = str.replace(/\D/g, "");
+
     val += Number(res);
-}
-total.innerHTML = `$${val + Number(res)}/${time?"yr":"mo"}`;
+  }
+  total.innerHTML = `$${val + Number(res)}/${time?"yr":"mo"}`;
 }
 function setTime(t) {
   return time = t;
-}  
+}
