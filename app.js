@@ -130,14 +130,14 @@ addons.forEach((addon) => {
       addonSelect.checked = true;
       addon.classList.add("ad-selected");
       showAddon(addon, true);
-      e.preventDefault();
+
     }
-
-
   });
-
-
 });
+
+
+
+
 
 
 
