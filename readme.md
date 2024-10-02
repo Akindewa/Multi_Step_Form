@@ -1,29 +1,20 @@
-#  MULTI STEPS FORM
-
-## Table of contents
-
-- [Overview](#overview)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-  - [Built with](#built-with)
-  - [Author](#author)
-  
+#  MULTI STEP FORM
 
 
 ## Overview
 
 
-Your users will be able to:
+   Users will be able to:
 
-- Complete each step of the sequence
-- Go back to a previous step to update their selections
-- See a summary of their selections on the final step and confirm their order
-- View the optimal layout for the interface depending on their device's screen size
-- See hover and focus states for all interactive elements on the page
-- Receive form validation messages if:
-            .A field has been missed
-            .The email address is not formatted correctly
-            .A step is submitted, but no selection has been made
+  - Complete each step of the sequence
+  - Go back to a previous step to update their selections
+  - See a summary of their selections on the final step and confirm their order
+  - View the optimal layout for the interface depending on their device's screen size
+  - See hover and focus states for all interactive elements on the page
+  - Receive form validation messages if:
+    - A field has been missed
+    - The email address is not formatted correctly
+    - A step is submitted, but no selection has been made
 
 
 ### Screenshot (desktop and mobile view)
@@ -40,18 +31,14 @@ Your users will be able to:
 
 ### Built with
 
-- Semantic HTML5 markup
-- CSS custom properties
+- HTML5 
+- CSS 
 - Flexbox
 - CSS Grid
-- javascript
+- Javascript
 
 
-## Author
+## Article
 
-- Arowolo Raodhot Akindewa
-email: wuraola2801@gmail.com
-
-
-
-THANKS
+#### Here's a link to the short article I wrote about this project
+  ![Article_Link] (https://hashnode.com/edit/cm1inzb6900020amjhqoy82e5)
